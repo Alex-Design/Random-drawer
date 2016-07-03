@@ -8,7 +8,18 @@
  * Randomly picks an object from an array and prints it.
  */
 
-$array = ['Amy', 'John', 'George'];
+if (array_key_exists(1, $argv)) {
+    $fileToUse = $argv[1];
+} else {
+    $fileToUse = 'names.csv';
+}
+
+$fileContents = file_get_contents($fileToUse);
+$inputForArray = str_getcsv($fileContents, ',');
+foreach ($inputForArray as $individualInput) {
+    $array[] = trim($individualInput);
+}
+
 $arrayLength = count($array) - 1; // arrays begin at index 0
 
 if ($arrayLength < 0) {
