@@ -9,7 +9,17 @@
  */
 
 if (array_key_exists(1, $argv)) {
-    $fileToUse = $argv[1];
+    
+    $positionOfDot = strpos($argv[1], '.');
+    $fileType = substr($argv[1], $positionOfDot);
+    
+    if ($fileType != '.csv') {
+        print_r(PHP_EOL . 'The input file is not a CSV. Please retry with a .CSV file.' . PHP_EOL . PHP_EOL);
+        die;
+    } else {
+        $fileToUse = $argv[1];
+    }
+    
 } else {
     $fileToUse = 'names.csv';
 }
